@@ -8,7 +8,12 @@
         <button @click="handle">添加</button>
     </div>
     <!--必须绑定:key :item表示组件ItemOne.vue的定义的变量,通过的属性的方式传递值到子组件-->
-    <item-one v-for="item in list" :key="item" :item="item"></item-one>
+    <item-one v-for="item in list" :key="item">
+      <!-- v-slot绑定子组件的comp属性,并通过itemPros接收子组件传递过来的checked变量-->
+       <template v-slot:comp="itemPros">
+         <span :style="{fontSize:'30px',color:itemPros.checked?'green':'blue'}">{{item}}</span>
+       </template>
+    </item-one>
 </div>
 </template>
 
